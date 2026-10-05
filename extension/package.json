@@ -1,0 +1,35 @@
+{
+  "name": "intelliphp-unified-ai-extension",
+  "displayName": "IntelliPhp Unified AI",
+  "description": "Local AI assistant for chat, code, and data tasks in VS Code.",
+  "version": "0.0.1",
+  "publisher": "ahmed25553",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:intelliphp-ai.ask"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "intelliphp-ai.ask",
+        "title": "IntelliPhp AI: Ask"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.5.4"
+  }
+}
