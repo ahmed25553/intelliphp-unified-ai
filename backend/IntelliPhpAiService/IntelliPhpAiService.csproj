@@ -1,83 +1,16 @@
-import * as vscode from 'vscode';
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
-export function activate(context: vscode.ExtensionContext) {
-  const disposable = vscode.commands.registerCommand('intelliphp-ai.ask', async () => {
-    const input = await vscode.window.showInputBox({
-      prompt: 'Ask IntelliPhp AI',
-      placeHolder: 'Type your question or coding task...'
-    });
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
-    if (!input) {
-      return;
-    }
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="3.0.1" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.17.3" />
+    <PackageReference Include="Microsoft.ML.Tokenizers" Version="0.20.240302.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.0" />
+  </ItemGroup>
 
-    const panel = vscode.window.createWebviewPanel(
-      'intelliphpAi',
-      'IntelliPhp AI',
-      vscode.ViewColumn.One,
-      { enableScripts: true }
-    );
-
-    panel.webview.html = `
-      <html>
-        <body style="font-family: sans-serif; padding: 20px; background: #111827; color: white;">
-          <h2>Thinking...</h2>
-          <p>Processing: ${escapeHtml(input)}</p>
-        </body>
-      </html>
-    `;
-
-    try {
-      const response = await fetch('http://localhost:5050/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          prompt: input,
-          mode: 'chat'
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Request failed with status ${response.status}`);
-      }
-
-      const data = await response.json() as { reply?: string };
-      const reply = data.reply ?? 'No response received.';
-
-      panel.webview.html = `
-        <html>
-          <body style="font-family: sans-serif; padding: 20px; background: #0f172a; color: #e2e8f0;">
-            <h2>IntelliPhp AI</h2>
-            <pre style="white-space: pre-wrap; font-size: 14px; line-height: 1.6;">${escapeHtml(reply)}</pre>
-          </body>
-        </html>
-      `;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error';
-      panel.webview.html = `
-        <html>
-          <body style="font-family: sans-serif; padding: 20px; background: #1f2937; color: #fca5a5;">
-            <h2>Connection Error</h2>
-            <p>Backend is not running or unreachable.</p>
-            <p>${escapeHtml(message)}</p>
-          </body>
-        </html>
-      `;
-    }
-  });
-
-  context.subscriptions.push(disposable);
-}
-
-export function deactivate() {}
-
-function escapeHtml(value: string): string {
-  return value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
+</Project>

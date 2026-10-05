@@ -1,0 +1,343 @@
+{
+    "model_type": "ONNX",
+    "pipeline_components": {
+        "main_model": "model.onnx"
+    },
+    "inputs": [
+        {
+            "name": "input_ids",
+            "type": "tensor(int64)",
+            "shape": [
+                "batch_size",
+                "seq_len"
+            ]
+        },
+        {
+            "name": "position_ids",
+            "type": "tensor(int64)",
+            "shape": [
+                "batch_size",
+                "seq_len"
+            ]
+        },
+        {
+            "name": "attention_mask",
+            "type": "tensor(float)",
+            "shape": [
+                "batch_size",
+                "total_seq_len"
+            ]
+        },
+        {
+            "name": "beam_select_idx",
+            "type": "tensor(int64)",
+            "shape": [
+                1,
+                "batch_size"
+            ]
+        },
+        {
+            "name": "input_log_probs",
+            "type": "tensor(float)",
+            "shape": [
+                "batch_size",
+                "beam_size"
+            ]
+        },
+        {
+            "name": "input_unfinished_sents",
+            "type": "tensor(bool)",
+            "shape": [
+                "batch_size",
+                "beam_size"
+            ]
+        },
+        {
+            "name": "prev_step_results",
+            "type": "tensor(int64)",
+            "shape": [
+                "batch_size",
+                "total_seq_len"
+            ]
+        },
+        {
+            "name": "prev_step_scores",
+            "type": "tensor(float)",
+            "shape": [
+                "batch_size",
+                "total_seq_len"
+            ]
+        },
+        {
+            "name": "past_0",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_1",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_2",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_3",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_4",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_5",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_6",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        },
+        {
+            "name": "past_7",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                8,
+                "past_seq_len",
+                64
+            ]
+        }
+    ],
+    "outputs": [
+        {
+            "name": "last_state",
+            "type": "tensor(int64)",
+            "shape": [
+                "?",
+                "?"
+            ]
+        },
+        {
+            "name": "present_0",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_0_dim_2",
+                "cur_seq_len",
+                "Concatpresent_0_dim_4"
+            ]
+        },
+        {
+            "name": "present_1",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_1_dim_2",
+                "cur_seq_len",
+                "Concatpresent_1_dim_4"
+            ]
+        },
+        {
+            "name": "present_2",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_2_dim_2",
+                "cur_seq_len",
+                "Concatpresent_2_dim_4"
+            ]
+        },
+        {
+            "name": "present_3",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_3_dim_2",
+                "cur_seq_len",
+                "Concatpresent_3_dim_4"
+            ]
+        },
+        {
+            "name": "present_4",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_4_dim_2",
+                "cur_seq_len",
+                "Concatpresent_4_dim_4"
+            ]
+        },
+        {
+            "name": "present_5",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_5_dim_2",
+                "cur_seq_len",
+                "Concatpresent_5_dim_4"
+            ]
+        },
+        {
+            "name": "present_6",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_6_dim_2",
+                "cur_seq_len",
+                "Concatpresent_6_dim_4"
+            ]
+        },
+        {
+            "name": "present_7",
+            "type": "tensor(float)",
+            "shape": [
+                2,
+                "batch_size",
+                "Concatpresent_7_dim_2",
+                "cur_seq_len",
+                "Concatpresent_7_dim_4"
+            ]
+        },
+        {
+            "name": "output_selected_indices",
+            "type": "tensor(int64)",
+            "shape": [
+                "?",
+                "?"
+            ]
+        },
+        {
+            "name": "output_log_probs",
+            "type": "tensor(float)",
+            "shape": [
+                "?",
+                "?"
+            ]
+        },
+        {
+            "name": "output_unfinished_sents",
+            "type": "tensor(bool)",
+            "shape": [
+                "?",
+                "?"
+            ]
+        },
+        {
+            "name": "current_step_results",
+            "type": "tensor(int64)",
+            "shape": [
+                4,
+                "?"
+            ]
+        },
+        {
+            "name": "current_step_scores",
+            "type": "tensor(float)",
+            "shape": [
+                4,
+                "?"
+            ]
+        }
+    ],
+    "graph_statistics": {
+        "total_nodes": 409,
+        "operations_breakdown": {
+            "Constant": 56,
+            "Cast": 36,
+            "Shape": 17,
+            "Unsqueeze": 19,
+            "Not": 2,
+            "Gather": 22,
+            "Slice": 8,
+            "Squeeze": 7,
+            "Concat": 13,
+            "Reshape": 12,
+            "ConstantOfShape": 5,
+            "DequantizeLinear": 2,
+            "Add": 36,
+            "LayerNormalization": 17,
+            "DynamicQuantizeLinear": 33,
+            "QAttention": 8,
+            "MatMulInteger": 25,
+            "Mul": 53,
+            "FastGelu": 8,
+            "LogSoftmax": 1,
+            "TopK": 2,
+            "Where": 6,
+            "Expand": 6,
+            "Range": 2,
+            "Equal": 4,
+            "ScatterND": 1,
+            "Div": 1,
+            "GatherElements": 4,
+            "Tile": 2,
+            "And": 1
+        }
+    },
+    "onnx_metadata": {
+        "producer_name": "onnx.quantize",
+        "producer_version": "0.1.0",
+        "ir_version": 7,
+        "opset_version": 12
+    },
+    "model_info": {
+        "model_name": "IntelliPHP_Compose_v1.3.76",
+        "model_location": "models/chat-code-data/model.onnx"
+    }
+}
